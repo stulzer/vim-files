@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/Volumes/Iomega HDD/Estudos/Ruby on Rails/eGenial/RoR Básico ao Avançado/aula21/producer/app'
+let g:netrw_dirhist_2='/Volumes/Iomega HDD/Estudos/Ruby on Rails/eGenial/RoR Básico ao Avançado/aula21/producer'
+let g:netrw_dirhist_3='/Volumes/Iomega HDD/Estudos/Ruby on Rails/eGenial/RoR Básico ao Avançado/aula21/producer/config'
+let g:netrw_dirhist_4='/usr/local/Cellar/git/1.7.7.4/etc/bash_completion.d'
+let g:netrw_dirhist_5='/Users/stulzer/Jobs/Vision/VJR/HTML/js'
+let g:netrw_dirhist_6='/Users/stulzer/Jobs/Vision/aaron/stylesheets/less'
+let g:netrw_dirhist_7='/Users/stulzer/Jobs/Vision/VJR/HTML/stylesheets/less'
+let g:netrw_dirhist_8='/Users/stulzer/Jobs/ControlWebStudio/APP/ControlWebStudio/.webbynode'
