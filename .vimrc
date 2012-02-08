@@ -78,5 +78,7 @@ set spelllang=pt
 
 map <leader>d :set list!<CR>
 
+nmap <Tab> O <Esc> j O <Esc>
+
 set background=dark
 call togglebg#map("<F5>")
