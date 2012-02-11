@@ -1,6 +1,4 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/Users/stulzer/Jobs/Vemos/sell/js'
-let g:netrw_dirhist_2='/Users/stulzer/Jobs/Vemos/sell/stylesheets'
-let g:netrw_dirhist_3='/Users/stulzer/Jobs/Vemos/sell/stylesheets/css'
-let g:netrw_dirhist_4='/Users/stulzer/Jobs/Vemos/sell/stylesheets/less'
+let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_1='/Users/stulzer/Jobs/Vision/Safra-Química/HTML/images'
+let g:netrw_dirhist_2='/Users/stulzer/Jobs/Vision/Ibel-Center/HTML/stylesheets'

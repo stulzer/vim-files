@@ -61,13 +61,13 @@ snippet list
 	list-style: ${1:none/disc/circle/square/decimal/zero} ${2:inside/outside} url(${3:../../images/});
 snippet grad
 	background: #$1;
-	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#$1), to(#$2));
-	background: -webkit-linear-gradient(#$1, #$2);
-	background: -moz-linear-gradient(#$1, #$2);
-	background: -ms-linear-gradient(#$1, #$2);
-	background: -o-linear-gradient(#$1, #$2);
-	background: linear-gradient(#$1, #$2);
-	-pie-background: linear-gradient(#${1:000000}, #${2:600066});
+	background: $3 -webkit-gradient(linear, 0 0, 0 bottom, from(#$1), to(#$2));
+	background: $3 -webkit-linear-gradient(#$1, #$2);
+	background: $3 -moz-linear-gradient(#$1, #$2);
+	background: $3 -ms-linear-gradient(#$1, #$2);
+	background: $3 -o-linear-gradient(#$1, #$2);
+	background: $3 linear-gradient(#$1, #$2);
+	-pie-background: ${3:image} linear-gradient(#${1:000000}, #${2:600066});
 snippet transform
 	-webkit-transform: scale($1);
 	-o-transform: scale($1);

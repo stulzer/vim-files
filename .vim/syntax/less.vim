@@ -24,16 +24,20 @@ syn case ignore
 
 
 
-syn keyword cssTagName abbr acronym address applet area a b base
-syn keyword cssTagName basefont bdo big blockquote body br button
-syn keyword cssTagName caption center cite code col colgroup dd del
-syn keyword cssTagName dfn dir div dl dt em fieldset font form frame
-syn keyword cssTagName frameset h1 h2 h3 h4 h5 h6 head hr html img i
-syn keyword cssTagName iframe img input ins isindex kbd label legend li
-syn keyword cssTagName link map menu meta noframes noscript ol optgroup
-syn keyword cssTagName option p param pre q s samp script select small
-syn keyword cssTagName span strike strong style sub sup tbody td
-syn keyword cssTagName textarea tfoot th thead title tr tt ul u var
+" syn keyword cssTagName abbr acronym address applet area a b base
+" syn keyword cssTagName basefont bdo big blockquote body br button
+" syn keyword cssTagName caption center cite code col colgroup dd del
+" syn keyword cssTagName dfn dir div dl dt em fieldset font form frame
+" syn keyword cssTagName frameset h1 h2 h3 h4 h5 h6 head hr html img i
+" syn keyword cssTagName iframe img input ins isindex kbd label legend li
+" syn keyword cssTagName link map menu meta noframes noscript ol optgroup
+" syn keyword cssTagName option p param pre q s samp script select small
+" syn keyword cssTagName span strike strong style sub sup tbody td
+" syn keyword cssTagName textarea tfoot th thead title tr tt ul u var
+
+
+syn keyword cssTagName a abbr address area article aside audio b base bdi bdo blockquote body br button canvas caption cite code col colgroup command datalist dd del details dfn div dl dt em embed fieldset figcaption figure footer form h1 h2 h3 h4 h5 h6 head header hgroup hr html i iframe img input ins kbd keygen label legend li link map mark menu meta meter nav noscript object ol optgroup option output p param pre progress q rp rt ruby s samp script section select small source span strong style sub summary sup table tbody td textarea tfoot th thead time title tr track u ul var video wbr
+
 syn match cssTagName "\<table\>"
 syn match cssTagName "\*"
 
@@ -119,6 +123,9 @@ syn match cssTextAttr contained "\<\(text-\)\=\(top\|bottom\)\>"
 syn keyword cssTextAttr contained underline overline blink sub super middle
 syn keyword cssTextAttr contained capitalize uppercase lowercase center justify baseline sub super
 
+
+
+
 syn match cssBoxProp contained "\<\(margin\|padding\|border\)\(-\(top\|right\|bottom\|left\)\)\=\>"
 syn match cssBoxProp contained "\<border-\(\(\(top\|right\|bottom\|left\)-\)\=\(width\|color\|style\)\)\=\>"
 syn match cssBoxProp contained "\<\(width\|z-index\)\>"
@@ -127,6 +134,47 @@ syn keyword cssBoxProp contained width height float clear overflow clip visibili
 syn keyword cssBoxAttr contained thin thick both
 syn keyword cssBoxAttr contained dotted dashed solid double groove ridge inset outset
 syn keyword cssBoxAttr contained hidden visible scroll collapse
+syn match cssBoxAttr contained "\<webkit-box-shadow\>"
+syn match cssBoxAttr contained "\<moz-box-shadow\>"
+syn match cssBoxAttr contained "\<webkit-transition\>"
+syn match cssBoxAttr contained "\<moz-transition\>"
+syn match cssBoxAttr contained "\<o-transition\>"
+syn match cssBoxAttr contained "\<ms-transition\>"
+syn match cssBoxAttr contained "\<box-shadow\>"
+syn match cssBoxAttr contained "\<transition\>"
+syn match cssBoxAttr contained "\<behavior\>"
+syn match cssBoxAttr contained "\<ease\>"
+syn match cssBoxAttr contained "\<ease-in\>"
+syn match cssBoxAttr contained "\<ease-out\>"
+syn match cssBoxAttr contained "\<ease-in-out\>"
+syn match cssBoxAttr contained "\<linear\>"
+syn match cssBoxAttr contained "\<cubic-bezier\>"
+syn match cssBoxAttr contained "\<webkit-border-radius\>"
+syn match cssBoxAttr contained "\<moz-border-radius\>"
+syn match cssBoxAttr contained "\<o-border-radius\>"
+syn match cssBoxAttr contained "\<html-border-radius\>"
+syn match cssBoxAttr contained "\<ms-border-radius\>"
+syn match cssBoxAttr contained "\<border-radius\>"
+syn match cssBoxAttr contained "\<opacity\>"
+syn match cssBoxAttr contained "\<moz-opacity\>"
+syn match cssBoxAttr contained "\<filter\>"
+syn match cssBoxAttr contained "\<webkit-transform\>"
+syn match cssBoxAttr contained "\<o-transform\>"
+syn match cssBoxAttr contained "\<moz-transform\>"
+syn match cssBoxAttr contained "\<ms-transform\>"
+syn match cssBoxAttr contained "\<transform\>"
+syn match cssBoxAttr contained "\<webkit-gradient\>"
+syn match cssBoxAttr contained "\<webkit-linear-gradient\>"
+syn match cssBoxAttr contained "\<moz-linear-gradient\>"
+syn match cssBoxAttr contained "\<ms-linear-gradient\>"
+syn match cssBoxAttr contained "\<o-linear-gradient\>"
+syn match cssBoxAttr contained "\<linear-gradient\>"
+syn match cssBoxAttr contained "\<pie-background\>"
+syn match cssBoxAttr contained "\<from\>"
+syn match cssBoxAttr contained "\<to\>"
+syn match cssBoxAttr contained "\<scale\>"
+
+
 
 syn keyword cssGeneratedContentProp contained content quotes
 syn match cssGeneratedContentProp contained "\<counter-\(reset\|increment\)\>"
@@ -174,7 +222,7 @@ syn keyword cssAuralAttr contained leftwards rightwards behind
 syn keyword cssAuralAttr contained below level above higher
 syn match cssAuralAttr contained "\<\(x-\)\=\(slow\|fast\)\>"
 syn keyword cssAuralAttr contained faster slower
-syn keyword cssAuralAttr contained male female child code digits continuous
+syn keyword cssAuralAttr contained male female child code digits continuous first last hover
 
 syn match cssTableProp contained "\<\(caption-side\|table-layout\|border-collapse\|border-spacing\|empty-cells\|speak-header\)\>"
 syn keyword cssTableAttr contained fixed collapse separate show hide once always

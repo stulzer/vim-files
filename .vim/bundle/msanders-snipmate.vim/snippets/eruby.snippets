@@ -177,12 +177,16 @@ snippet divp
 	</div>
 snippet div
 	<div id="${1:name}">
+
 		${2}
+
 	</div>
 	<!-- fim do $1 -->
 snippet divc
 	<div class="${1:name}">
+
 		${2}
+
 	</div>
 	<!-- fim do $1 -->
 # Embed QT Movie
@@ -208,9 +212,7 @@ snippet fieldset
 snippet form
 	<form action="${1:`Filename('$1_submit')`}" method="${2:get}" accept-charset="utf-8">
 		${3}
-
-
-	<p><input type="submit" value="Continue &rarr;"`Close()`></p>
+		<input type="submit" value="Enviar"`Close()`>
 	</form>
 snippet h1
 	<h1>${1}</h1>
@@ -283,3 +285,5 @@ snippet slt
 	<%= stylesheet_link_tag "${1}"${2} %>${3}
 snippet jit
 	<%= javascript_include_tag "${1}"${2} %>${3}
+snippet hr
+	<hr />
