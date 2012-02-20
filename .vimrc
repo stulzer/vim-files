@@ -80,5 +80,7 @@ map <leader>d :set list!<CR>
 
 nmap <Tab> O <Esc> j O <Esc>
 
+nmap ,ras :call ReloadAllSnippets() <CR>
+
 set background=dark
 call togglebg#map("<F5>")
