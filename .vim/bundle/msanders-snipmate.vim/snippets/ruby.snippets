@@ -505,7 +505,7 @@ snippet group
 	group ${1:group_name} do
 		gem '${2:gem_name}'${3}
 	end
-snippet resources
+snippet resource
 	class ${1:Model}sController < ApplicationController
 
 		#remember to insert a respond_to, with format on application controller.
@@ -545,6 +545,45 @@ snippet resources
 			@$1 = $1.find(params[:id])
 			@$1.destroy
 			respond_with @$1
+		end
+	end
+snippet resourceadmin
+	class Admin::${1:Model}sController < Admin::AdminController
+		def index
+			@$1s = $1.all
+			respond_with @$1s
+		end
+
+		def show
+			@$1 = $1.find(params[:id])
+			respond_with @$1
+		end
+
+		def new
+			@$1 = $1.new
+			respond_with @$1
+		end
+
+		def edit
+			@$1 = $1.find(params[:id])
+		end
+
+		def create
+			@$1 = $1.new(params[:$1])
+			flash[:notice] = '$1 was successfully created.' if @$1.save
+			respond_with @$1, location: admin_$1s_path
+		end
+
+		def update
+			@$1 = $1.find(params[:id])
+			flash[:notice] = '$1 was successfully updated.' if @$1.update_attributes(params[:$1])
+			respond_with @$1, location: admin_$1s_path
+		end
+
+		def destroy
+			@$1 = $1.find(params[:id])
+			@$1.destroy
+			respond_with @$1, location: admin_$1s_path
 		end
 	end
 snippet rt

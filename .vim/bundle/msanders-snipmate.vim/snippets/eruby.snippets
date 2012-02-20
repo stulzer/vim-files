@@ -1,5 +1,5 @@
 snippet img
-	<%= image_tag("${1}") %>
+	<%= image_tag "${1}" %>
 snippet imgi
 	image_tag("${1}")
 snippet if
@@ -171,10 +171,6 @@ snippet base
 	<base href="${1}" target="${2}"`Close()`>
 snippet r
 	<br />
-snippet divp
-	<div style="${1:name}">
-		${2}
-	</div>
 snippet div
 	<div id="${1:name}">
 
@@ -189,6 +185,10 @@ snippet divc
 
 	</div>
 	<!-- fim do $1 -->
+snippet divp
+	<div style="${1:name}">
+		${2}
+	</div>
 # Embed QT Movie
 snippet movie
 	<object width="$2" height="$3" classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B"
@@ -287,3 +287,9 @@ snippet jit
 	<%= javascript_include_tag "${1}"${2} %>${3}
 snippet hr
 	<hr />
+snippet object
+	<object type="application/x-shockwave-flash" data="${1:file}.swf" width="${2:550}" height="${3:615}"> 
+		<param name="movie" value="$1.swf" /> 
+		<param name="menu" value="false" /> 
+		<param name="quality" value="high" /> 
+	</object>
