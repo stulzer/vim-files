@@ -1,51 +1,47 @@
-set nocompatible                  " Must come first because it changes other options.
-
-" silent! call pathogen#runtime_append_all_bundles()
-" 
-" syntax enable                     " Turn on syntax highlighting.
+set nocompatible
 
 call pathogen#infect()
 syntax on
 
-filetype plugin indent on         " Turn on file type detection.
+filetype plugin indent on
 
-runtime macros/matchit.vim        " Load the matchit plugin.
+runtime macros/matchit.vim
 
-set showcmd                       " Display incomplete commands.
-set showmode                      " Display the mode you're in.
+set showcmd
+set showmode
 
-set backspace=indent,eol,start    " Intuitive backspacing.
+set backspace=indent,eol,start
 
-set hidden                        " Handle multiple buffers better.
+set hidden
 
-set wildmenu                      " Enhanced command line completion.
-set wildmode=list:longest         " Complete files like a shell.
+set wildmenu
+set wildmode=list:longest
 
-set ignorecase                    " Case-insensitive searching.
-set smartcase                     " But case-sensitive if expression contains a capital letter.
+set ignorecase
+set smartcase
 
-set number                        " Show line numbers.
-set ruler                         " Show cursor position.
+set number
+set ruler
 
-set incsearch                     " Highlight matches as you type.
-set hlsearch                      " Highlight matches.
+set incsearch
+set hlsearch
 
-set wrap                          " Turn on line wrapping.
-set scrolloff=3                   " Show 3 lines of context around the cursor.
+set wrap
+set scrolloff=3
 
-set title                         " Set the terminal's title
+set title
 
-set visualbell                    " No beeping.
+set visualbell
 
-set nobackup                      " Don't make a backup before overwriting a file.
-set nowritebackup                 " And again.
-set directory=$HOME/.vim/tmp//,.  " Keep swap files in one location
+set nobackup
+set nowritebackup
+set directory=$HOME/.vim/tmp//,.
 
-set tabstop=2                    " Global tab width.
-set shiftwidth=2                 " And again, related.
-set expandtab                    " Use spaces instead of tabs
+set tabstop=2
+set shiftwidth=2
+set expandtab
 
-set laststatus=2                  " Show the status line all the time
+set laststatus=2
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
 
 colorscheme solarized
@@ -62,7 +58,6 @@ map <leader>tm :tabmove
 
 autocmd BufNewFile,BufRead *_spec.rb compiler rspec
 set clipboard=unnamed
-set paste
 
 set nolist
 set listchars=tab:▸\ ,eol:¬
@@ -75,12 +70,39 @@ let g:LustyExplorerSuppressRubyWarning = 1
 set nospell
 set spelllang=pt
 
-
 map <leader>d :set list!<CR>
-
 nmap <Tab> O <Esc> j O <Esc>
-
 nmap ,ras :call ReloadAllSnippets() <CR>
+map ,asd :CommandT<CR>
+map ,awd :CommandTFlush<CR>
+map ,jq :set syntax=jquery<CR>
+map ,js :set syntax=javascript<CR>
 
 set background=dark
 call togglebg#map("<F5>")
+
+command! -nargs=? -range Align <line1>,<line2>call AlignSection('<args>')
+vnoremap <silent> <Leader>a :Align<CR>
+function! AlignSection(regex) range
+  let extra = 1
+  let sep = empty(a:regex) ? '=' : a:regex
+  let maxpos = 0
+  let section = getline(a:firstline, a:lastline)
+  for line in section
+    let pos = match(line, ' *'.sep)
+    if maxpos < pos
+      let maxpos = pos
+    endif
+  endfor
+  call map(section, 'AlignLine(v:val, sep, maxpos, extra)')
+  call setline(a:firstline, section)
+endfunction
+
+function! AlignLine(line, sep, maxpos, extra)
+  let m = matchlist(a:line, '\(.\{-}\) \{-}\('.a:sep.'.*\)')
+  if empty(m)
+    return a:line
+  endif
+  let spaces = repeat(' ', a:maxpos - strlen(m[1]) + a:extra)
+  return m[1] . spaces . m[2]
+endfunction
