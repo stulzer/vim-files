@@ -20,6 +20,10 @@ snippet boxs
 	-webkit-box-shadow: $1 $2 $3 $4;
 	-moz-box-shadow: $1 $2 $3 $4;
 	box-shadow: ${1:x-radius} ${2:y-radius} ${3:blur} ${4:color};
+snippet boxsoi
+	-webkit-box-shadow: $1 $2 $3 $4, inset $5 $6 $7 $8;
+	-moz-box-shadow: $1 $2 $3 $4, inset $5 $6 $7 $8;
+	box-shadow: ${1:x-radius} ${2:y-radius} ${3:blur} ${4:color}, inset ${5:x-radius} ${6:y-radius} ${7:blur} ${8:color};
 snippet borderr
 	-webkit-border-radius: $1;
 	-moz-border-radius: $1;
