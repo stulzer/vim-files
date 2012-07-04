@@ -548,7 +548,7 @@ snippet resource
 		end
 	end
 snippet resourceadmin
-	class Admin::${1:Model}sController < Admin::AdminController
+	class Admin::${1:Model}sController < Admin::BaseController
 		def index
 			@$1s = $1.all
 			respond_with @$1s
