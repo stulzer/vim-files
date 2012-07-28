@@ -1,8 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/Users/stulzer/.vim'
-let g:netrw_dirhist_2='/Users/stulzer/Jobs/Stulzer/new/scope/project'
-let g:netrw_dirhist_3='/Users/stulzer/Desktop'
-let g:netrw_dirhist_4='/Users/stulzer/Jobs/Vice/pumaguide'
-let g:netrw_dirhist_5='/Users/stulzer/Jobs/ThinkViral/app/ThinkViral/.webbynode'
-let g:netrw_dirhist_6='/Users/stulzer/Jobs/ThinkViral/app/ThinkViral/.webbynode/tasks'
