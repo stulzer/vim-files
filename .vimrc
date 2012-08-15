@@ -80,6 +80,8 @@ map ,cf :CommandTFlush<CR>
 map ,jq :set syntax=jquery<CR>
 map ,js :set syntax=javascript<CR>
 
+map <leader>r :!rspec --color<CR>
+
 set background=dark
 call togglebg#map("<F5>")
 
@@ -108,3 +110,5 @@ function! AlignLine(line, sep, maxpos, extra)
   let spaces = repeat(' ', a:maxpos - strlen(m[1]) + a:extra)
   return m[1] . spaces . m[2]
 endfunction
+
+let g:CommandTAcceptSelectionSplitMap=['<CR>', '<C-g>']

@@ -10,6 +10,7 @@ colorscheme solarized
 set background=dark
 set nolist
 set listchars=tab:▸\ ,eol:¬
+set go-=L
 
 highlight NonText guifg=#1a3c46
 highlight SpecialKey guifg=#1a3c46
