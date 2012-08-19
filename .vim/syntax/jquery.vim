@@ -40,7 +40,7 @@ syn keyword jEffects        contained fadeIn fadeOut fadeTo fadeToggle
 syn keyword jEffects        contained slideDown slideToggle slideUp
 syn keyword jEvents         contained error resize scroll
 syn keyword jEvents         contained ready unload
-syn keyword jEvents         contained bind delegate die live one proxy trigger triggerHandler unbind undelegate
+syn keyword jEvents         contained bind delegate die live one proxy trigger triggerHandler unbind undelegate on
 syn keyword jEvents         contained Event currentTarget isDefaultPrevented isImmediatePropagationStopped isPropagationStopped namespace pageX pageY preventDefault relatedTarget result stopImmediatePropagation stopPropagation target timeStamp which
 syn keyword jEvents         contained blur change focus select submit
 syn keyword jEvents         contained focusin focusout keydown keypress keyup
