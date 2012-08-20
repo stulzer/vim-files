@@ -79,6 +79,7 @@ map ,cc :CommandT<CR>
 map ,cf :CommandTFlush<CR>
 map ,jq :set syntax=jquery<CR>
 map ,js :set syntax=javascript<CR>
+map ,nd :!node %<CR>
 
 map <leader>r :!rspec --color<CR>
 
