@@ -70,12 +70,6 @@ snippet do
 		${2:/* code */}
 	} while (${1:/* condition */});
 
-# Object Method
-snippet :f
-	${1:method_name}: function(${2:attribute}) {
-		${4}
-	}${3:,}
-
 # setTimeout function
 snippet timeout
 	setTimeout(function() {${3}}${2}, ${1:10};
@@ -95,7 +89,7 @@ snippet ready
 	});
 
 # Window load
-snippet ready
+snippet load
 	$(window).load(function() {
 		${1}
 	});
