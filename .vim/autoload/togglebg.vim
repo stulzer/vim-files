@@ -1,3 +1,4 @@
+" Toggle Background
 " Modified:     2011 Apr 29
 " Maintainer:   Ethan Schoonover
 " License:      OSI approved MIT license
