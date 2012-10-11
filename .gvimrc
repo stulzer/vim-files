@@ -5,8 +5,6 @@ set guioptions-=T
 set fu
 
 set guioptions-=r
-colorscheme solarized
-set background=dark
 set nolist
 set listchars=tab:▸\ ,eol:¬
 set go-=L

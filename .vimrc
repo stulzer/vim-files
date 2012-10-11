@@ -29,7 +29,7 @@ set ignorecase
 set smartcase
 
 " Show line numbers
-set number
+" set number
 " Show current position
 set ruler
 " Add a highlight color in the current line
@@ -73,7 +73,7 @@ colorscheme solarized
 set background=dark
 call togglebg#map("<F5>")
 
-" Mapping for quick js/less folding
+" Mapping for quick js/less/scss folding
 nmap ,f vi{zf
 
 " Mapping for tab manipulation
