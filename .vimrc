@@ -29,7 +29,7 @@ set ignorecase
 set smartcase
 
 " Show line numbers
-" set number
+set number
 " Show current position
 set ruler
 " Add a highlight color in the current line
