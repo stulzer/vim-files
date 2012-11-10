@@ -1,5 +1,15 @@
 set nocompatible
 
+set background=dark     " Assume a light background
+
+if has ("unix") && "Darwin" != system("echo -n \"$(uname)\"")
+  " on Linux use + register for copy-paste
+  set clipboard=unnamedplus
+else
+  " one mac and windows, use * register for copy-paste
+  set clipboard=unnamed
+endif
+
 call pathogen#infect()
 syntax on
 
@@ -8,8 +18,6 @@ filetype plugin indent on
 
 runtime macros/matchit.vim
 
-" Display incomplete commands
-set showcmd
 " Display current mode
 set showmode
 
@@ -30,8 +38,6 @@ set smartcase
 
 " Show line numbers
 set number
-" Show current position
-set ruler
 " Add a highlight color in the current line
 set cursorline
 
@@ -61,16 +67,16 @@ set tabstop=2
 set shiftwidth=2
 " Use spaces instead of tabs
 set expandtab
+set pastetoggle=<F12>
 
 " Show the status line all the time
-set laststatus=2
+" set laststatus=2
 
 " Useful status information at bottom of screen
-set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
+" set statusline=[%n]\\ %<%.99f\\ %h%w%m%r%y\\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\\ %l,%c-%v\\ %)%P
 
 " Best colorscheme ever =)
 colorscheme solarized
-set background=dark
 call togglebg#map("<F5>")
 
 " Mapping for quick js/less/scss folding
@@ -127,7 +133,8 @@ map ,nd :!node %<CR>
 " Execute rspec
 map <leader>r :!rspec --color<CR>
 
-" Function to align key value fat arrows in ruby, and equals in js
+" Function to align key value fat arrows in ruby, and equals in js, stolen
+" from @tenderlove vimrc file.
 command! -nargs=? -range Align <line1>,<line2>call AlignSection('<args>')
 vnoremap <silent> <Leader>a :Align<CR>
 function! AlignSection(regex) range
@@ -156,3 +163,44 @@ endfunction
 
 " CommandT auto split window
 let g:CommandTAcceptSelectionSplitMap=['<CR>', '<C-g>']
+
+if has('cmdline_info')
+  set ruler                   " show the ruler
+  set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " a ruler on steroids
+  set showcmd                 " show partial commands in status line and
+  " selected characters/lines in visual mode
+endif
+
+if has('statusline')
+  set laststatus=2
+
+  " Broken down into easily includeable segments
+  set statusline=%<%f\    " Filename
+  set statusline+=%w%h%m%r " Options
+  set statusline+=%{fugitive#statusline()} "  Git Hotness
+  set statusline+=\ [%{&ff}/%Y]            " filetype
+  set statusline+=\ [%{getcwd()}]          " current dir
+  set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
+endif
+
+" Automaticaly load my vimrc when saved.
+if has("autocmd")
+  autocmd bufwritepost .vimrc source $MYVIMRC
+endif
+
+" mapping to open my vimrc, to edit it on the fly
+nmap <leader>v :tabedit $MYVIMRC<CR>
+
+if has("user_commands")
+  command! -bang -nargs=* -complete=file E e<bang> <args>
+  command! -bang -nargs=* -complete=file W w<bang> <args>
+  command! -bang -nargs=* -complete=file Wq wq<bang> <args>
+  command! -bang -nargs=* -complete=file WQ wq<bang> <args>
+  command! -bang -nargs=* -complete=file Bd bd<bang> <args>
+  command! -bang Wa wa<bang>
+  command! -bang WA wa<bang>
+  command! -bang Q q<bang>
+  command! -bang QA qa<bang>
+  command! -bang Qa qa<bang>
+  command! -bang Bd bd<bang>
+endif
