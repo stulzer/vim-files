@@ -2,7 +2,6 @@ set guifont=Inconsolata:h16
 set antialias
 set encoding=utf-8
 set guioptions-=T
-set fu
 
 set guioptions-=r
 set nolist

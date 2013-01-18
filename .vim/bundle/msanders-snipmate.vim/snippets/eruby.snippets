@@ -216,10 +216,13 @@ snippet fieldset
 		${3}
 	</fieldset>
 snippet form
-	<form action="${1:`Filename('$1_submit')`}" method="${2:get}" accept-charset="utf-8">
-		${3}
-		<input type="submit" value="Enviar"`Close()`>
-	</form>
+	<%= form_for ${1} do |f| %>
+		<div class="field">
+			<%= f.label ${2} %>
+			<%= f.text_field ${3} %>
+		</div>
+		<%= f.submit %>
+	<% end %>
 snippet h1
 	<h1>${1}</h1>
 snippet h2
