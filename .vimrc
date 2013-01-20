@@ -186,6 +186,7 @@ endif
 " mapping to open my vimrc, to edit it on the fly
 nmap <leader>v :tabedit $MYVIMRC<CR>
 
+" Nice way to corret typos saving, editing and deleting buffers
 if has("user_commands")
   command! -bang -nargs=* -complete=file E e<bang> <args>
   command! -bang -nargs=* -complete=file W w<bang> <args>
@@ -200,3 +201,16 @@ if has("user_commands")
   command! -bang Bd bd<bang>
 endif
 
+" Removed the slow rake routes function from bash
+function! ShowRoutes()
+  " requires vim-scratch plugin
+  :topleft 100 :split __Routes__
+  :set buftype=nofile
+  :normal 1GdG
+  :0r! rake -s routes
+  :exec ":normal " . line("$") . "^W_ "
+  :normal 1GG
+  :normal dd
+endfunction
+
+map <leader>cR :call ShowRoutes()<cr>
