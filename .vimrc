@@ -116,7 +116,7 @@ map <leader>d :set list!<cr>
 nmap <Tab> O <Esc> j O <Esc>
 
 nmap <leader>ras :call ReloadAllSnippets() <cr>
-map <leader>ct :CommandTFlush<cr>\|:CommandT<cr>
+map <leader>cc :CommandTFlush<cr>\|:CommandT<cr>
 
 " Syntax Changing
 map <leader>jq :set syntax=jquery<cr>
@@ -212,7 +212,7 @@ map <leader>cR :call ShowRoutes()<cr>
 
 " CommandT mapings
 map <leader>cv :CommandTFlush<cr>\|:CommandT app/views<cr>
-map <leader>cc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
+map <leader>ct :CommandTFlush<cr>\|:CommandT app/controllers<cr>
 map <leader>cm :CommandTFlush<cr>\|:CommandT app/models<cr>
 map <leader>ch :CommandTFlush<cr>\|:CommandT app/helpers<cr>
 map <leader>cs :CommandTFlush<cr>\|:CommandT spec<cr>
