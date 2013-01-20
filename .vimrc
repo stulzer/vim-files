@@ -110,28 +110,27 @@ set nospell
 set spelllang=pt
 
 " Mapping to show or hide invisibles
-map <leader>d :set list!<CR>
+map <leader>d :set list!<cr>
 
 " Creates one line above and bellow the current cursor position
 nmap <Tab> O <Esc> j O <Esc>
 
-nmap <leader>ras :call ReloadAllSnippets() <CR>
-map <leader>cc :CommandT<CR>
-map <leader>cf :CommandTFlush<CR>
+nmap <leader>ras :call ReloadAllSnippets() <cr>
+map <leader>ct :CommandTFlush<cr>\|:CommandT<cr>
 
 " Syntax Changing
-map <leader>jq :set syntax=jquery<CR>
-map <leader>js :set syntax=javascript<CR>
+map <leader>jq :set syntax=jquery<cr>
+map <leader>js :set syntax=javascript<cr>
 " Execute the current file in nodejs
-map <leader>nd :!node %<CR>
+map <leader>nd :!node %<cr>
 
 " Execute rspec
-map <leader>r :!rspec --color<CR>
+map <leader>s :!rspec --color<cr>
 
 " Function to align key value fat arrows in ruby, and equals in js, stolen
 " from @tenderlove vimrc file.
 command! -nargs=? -range Align <line1>,<line2>call AlignSection('<args>')
-vnoremap <silent> <Leader>a :Align<CR>
+vnoremap <silent> <Leader>a :Align<cr>
 function! AlignSection(regex) range
   let extra = 1
   let sep = empty(a:regex) ? '=' : a:regex
@@ -156,9 +155,6 @@ function! AlignLine(line, sep, maxpos, extra)
   return m[1] . spaces . m[2]
 endfunction
 
-" CommandT auto split window
-let g:CommandTAcceptSelectionSplitMap=['<CR>', '<C-g>']
-
 if has('cmdline_info')
   set ruler                   " show the ruler
   set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " a ruler on steroids
@@ -178,13 +174,13 @@ if has('statusline')
   set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
 endif
 
-" Automaticaly load my vimrc when saved.
-if has("autocmd")
-  autocmd bufwritepost .vimrc source $MYVIMRC
-endif
+" " Automaticaly load my vimrc when saved.
+" if has("autocmd")
+"   autocmd bufwritepost .vimrc source $MYVIMRC
+" endif
 
-" mapping to open my vimrc, to edit it on the fly
-nmap <leader>v :tabedit $MYVIMRC<CR>
+" " mapping to open my vimrc, to edit it on the fly
+" nmap <leader>v :tabedit $MYVIMRC<cr>
 
 " Nice way to corret typos saving, editing and deleting buffers
 if has("user_commands")
@@ -212,5 +208,33 @@ function! ShowRoutes()
   :normal 1GG
   :normal dd
 endfunction
-
 map <leader>cR :call ShowRoutes()<cr>
+
+" CommandT mapings
+map <leader>cv :CommandTFlush<cr>\|:CommandT app/views<cr>
+map <leader>cc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
+map <leader>cm :CommandTFlush<cr>\|:CommandT app/models<cr>
+map <leader>ch :CommandTFlush<cr>\|:CommandT app/helpers<cr>
+map <leader>cs :CommandTFlush<cr>\|:CommandT spec<cr>
+map <leader>cl :CommandTFlush<cr>\|:CommandT lib<cr>
+map <leader>ca :CommandTFlush<cr>\|:CommandT app/assets<cr>
+map <leader>cg :topleft 100 :split Gemfile<cr>
+
+" Alternate between last opened file
+nnoremap <leader><leader> <c-^>
+
+" Map ,e and ,v to open files in the same directory as the current file
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+map <leader>e :edit %%
+map <leader>v :view %%
+
+function! RenameFile()
+  let old_name = expand('%')
+  let new_name = input('New file name: ', expand('%'))
+  if new_name != '' && new_name != old_name
+    exec ':saveas ' . new_name
+    exec ':silent !rm ' . old_name
+    redraw!
+  endif
+endfunction
+map <leader>r :call RenameFile()<cr>
