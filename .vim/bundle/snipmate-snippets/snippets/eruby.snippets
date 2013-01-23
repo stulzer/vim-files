@@ -1,0 +1,149 @@
+# .erb and .rhmtl files
+
+# Includes html.snippets
+
+# Rails *****************************
+snippet rc
+	<% ${1} %>
+snippet rce
+	<%= ${1} %>${2}
+snippet %
+	<% ${1} %>
+snippet =
+	<%= ${1} %>${2}
+snippet end
+	<% end %>${1}
+snippet ead
+	<% ${1}.each do |${2}| %>
+		${3}
+	<% end %>
+snippet for
+	<% for ${2:item} in ${1} %>
+		${3}
+	<% end %>
+snippet rp
+	<%= render :partial => '${1:item}' %>
+snippet rpl
+	<%= render :partial => '${1:item}', :locals => { :${2:name} => '${3:value}'$4 } %>
+snippet rps
+	<%= render :partial => '${1:item}', :status => ${2:500} %>
+snippet rpc
+	<%= render :partial => '${1:item}', :collection => ${2:items} %>
+snippet lia
+	<%= link_to '${1:link text...}', :action => '${2:index}' %>
+snippet liai
+	<%= link_to '${1:link text...}', :action => '${2:edit}', :id => ${3:@item} %>
+snippet lic
+	<%= link_to '${1:link text...}', :controller => '${2:items}' %>
+snippet lica
+	<%= link_to '${1:link text...}', :controller => '${2:items}', :action => '${3:index}' %>
+snippet licai
+	<%= link_to '${1:link text...}', :controller => '${2:items}', :action => '${3:edit}', :id => ${4:@item} %>
+snippet yield
+	<%= yield ${1::content_symbol} %>${2}
+snippet conf
+	<% content_for :${1:head} do %>
+		${2}
+	<% end %>
+snippet cs
+	<%= collection_select <+object+>, <+method+>, <+collection+>, <+value_method+>, <+text_method+><+, <+[options]+>, <+[html_options]+>+> %>
+snippet ct
+	<%= content_tag '${1:DIV}', ${2:content}${3:,options} %>
+snippet form
+	<%= form_for ${1} do |f| %>
+		<div class="field">
+			<%= f.label ${2} %>
+			<%= f.text_field ${3} %>
+		</div>
+		<%= f.submit %>
+	<% end %>
+snippet ff
+	<%= form_for @${1:model} do |f| %>
+		${2}
+	<% end %>
+snippet ffcb
+	<%= ${1:f}.check_box :${2:attribute} %>
+snippet ffe
+	<%= error_messages_for :${1:model} %>
+	
+	<%= form_for @${2:model} do |f| %>
+		${3}
+	<% end %>
+snippet ffff
+	<%= ${1:f}.file_field :${2:attribute} %>
+snippet ffhf
+	<%= ${1:f}.hidden_field :${2:attribute} %>
+snippet ffl
+	<%= ${1:f}.label :${2:attribute}, '${3:$2}' %>
+snippet ffpf
+	<%= ${1:f}.password_field :${2:attribute} %>
+snippet ffrb
+	<%= ${1:f}.radio_button :${2:attribute}, :${3:tag_value} %>
+snippet ffs
+	<%= ${1:f}.submit "${2:submit}" %>
+snippet ffta
+	<%= ${1:f}.text_area :${2:attribute} %>
+snippet fftf
+	<%= ${1:f}.text_field :${2:attribute} %>
+snippet fields
+	<% fields_for :${1:model}, @$1 do |${2:f}| %>
+		${3}
+	<% end %>
+snippet i18
+	I18n.t('${1:type.key}')${2}
+snippet it
+	<%= image_tag "${1}"${2} %>
+snippet jit
+	<%= javascript_include_tag ${1::all} %>
+snippet jsit
+	<%= javascript_include_tag "${1}" %>
+snippet lim
+	<%= link_to ${1:model}.${2:name}, ${3:$1}_path(${4:$1}) %>
+snippet linp
+	<%= link_to "${1:Link text...}", ${2:parent}_${3:child}_path(${4:@$2}, ${5:@$3}) %>
+snippet linpp
+	<%= link_to "${1:Link text...}", ${2:parent}_${3:child}_path(${4:@$2}) %>
+snippet lip
+	<%= link_to "${1:Link text...}", ${2:model}_path(${3:@$2}) %>
+snippet lipp
+	<%= link_to "${1:Link text...}", ${2:model}s_path %>
+snippet lt
+	<%= link_to "${1:name}", ${2:dest} %>
+snippet ofcfs
+	<%= options_from_collection_for_select ${1:collection}, ${2:value_method}, ${3:text_method}, ${4:selected_value} %>
+snippet rf
+	<%= render :file => "${1:file}"${2} %>
+snippet rt
+	<%= render :template => "${1:file}"${2} %>
+snippet slt
+	<%= stylesheet_link_tag ${1::all}, :cache => ${2:true} %>
+snippet sslt
+	<%= stylesheet_link_tag "${1}" %>
+snippet h1
+	<h1>${1}</h1>
+snippet h2
+	<h2>${1}</h2>
+snippet h3
+	<h3>${1}</h3>
+snippet h4
+	<h4>${1}</h4>
+snippet h5
+	<h5>${1}</h5>
+snippet h6
+	<h6>${1}</h6>
+snippet lorem
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi viverra lacus nisi. Pellentesque nec orci arcu. Nulla sagittis, eros vehicula suscipit pulvinar, purus tellus varius magna, sed luctus purus neque at elit. Aliquam erat volutpat. Vestibulum nibh ligula, accumsan porttitor pulvinar condimentum, tincidunt eget felis. Curabitur condimentum ultrices nibh. Duis accumsan, sem molestie convallis ultricies, massa tellus auctor tellus, et congue neque tortor et tellus.
+	Mauris eu quam felis, ut pulvinar mauris. Integer et diam lectus. Nullam at pharetra orci. Proin tincidunt velit vel arcu volutpat viverra in eu libero. Nullam in elit dolor. In consectetur, velit et consectetur gravida, purus est viverra justo, ac sagittis dui magna non quam. Proin a magna ipsum, a condimentum nunc. Fusce ac velit non risus tincidunt dictum nec luctus nunc. Mauris nisl quam, egestas eu congue imperdiet, egestas sed lectus.
+	Donec convallis mauris id nibh condimentum adipiscing. Praesent vitae molestie magna. Praesent in dui arcu, vitae faucibus diam. Sed dui metus, commodo lobortis accumsan ac, auctor et sapien. Maecenas augue tortor, fringilla eget tristique eu, vehicula at massa. Aliquam non massa nisi. Mauris odio tellus, scelerisque vel feugiat sit amet, pulvinar non nisi. Donec egestas enim in urna porttitor bibendum. Suspendisse lacinia risus sit amet augue vehicula a vehicula sem sollicitudin.
+snippet if6
+	<!--[if IE 6]>     IE Conditional Comment: Internet Explorer 6 only   <![endif]-->
+snippet if7
+	<!--[if IE 7]>     IE Conditional Comment: Internet Explorer 7 only   <![endif]-->
+snippet if8
+	<!--[if IE 8]>     IE Conditional Comment: Internet Explorer 8 only   <![endif]-->
+snippet <
+	<%= ${1} %>
+snippet <<
+	<% ${1} %>
+snippet hr
+	<hr />
