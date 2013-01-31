@@ -2,7 +2,7 @@ execute pathogen#infect()
 
 set nocompatible
 
-set background=dark     " Assume a light background
+set background=light     " Assume a light background
 
 if has ("unix") && "Darwin" != system("echo -n \"$(uname)\"")
   " on Linux use + register for copy-paste
@@ -73,7 +73,6 @@ set shiftwidth=2
 set expandtab
 set pastetoggle=<F12>
 
-" Best colorscheme ever =)
 colorscheme solarized
 call togglebg#map("<F5>")
 
@@ -115,7 +114,6 @@ map <leader>d :set list!<cr>
 " Creates one line above and bellow the current cursor position
 nmap <Tab> O <Esc> j O <Esc>
 
-nmap <leader>ras :call ReloadAllSnippets() <cr>
 map <leader>cc :CommandTFlush<cr>\|:CommandT<cr>
 
 " Syntax Changing
@@ -210,6 +208,10 @@ function! ShowRoutes()
 endfunction
 map <leader>cR :call ShowRoutes()<cr>
 
+" Command-T settings
+" Open in split by default
+let g:CommandTAcceptSelectionSplitMap=['<CR>', '<C-s>']
+
 " CommandT mapings
 map <leader>cv :CommandTFlush<cr>\|:CommandT app/views<cr>
 map <leader>ct :CommandTFlush<cr>\|:CommandT app/controllers<cr>
@@ -238,3 +240,6 @@ function! RenameFile()
   endif
 endfunction
 map <leader>r :call RenameFile()<cr>
+
+" remapping s in visual mode, in order to make the surround vim work better
+vmap s S
