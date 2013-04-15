@@ -4,20 +4,14 @@ set nocompatible
 
 set background=light     " Assume a light background
 
-if has ("unix") && "Darwin" != system("echo -n \"$(uname)\"")
-  " on Linux use + register for copy-paste
-  set clipboard=unnamedplus
-else
-  " one mac and windows, use * register for copy-paste
-  set clipboard=unnamed
-endif
-
 syntax on
 
 " Auto detect filetype
 filetype plugin indent on
 
 runtime macros/matchit.vim
+
+set clipboard=unnamed
 
 " Display current mode
 set showmode
@@ -73,7 +67,7 @@ set shiftwidth=2
 set expandtab
 set pastetoggle=<F12>
 
-colorscheme solarized
+colorscheme Tomorrow
 call togglebg#map("<F5>")
 
 " Mapping for quick js/less/scss folding
@@ -229,6 +223,9 @@ nnoremap <leader><leader> <c-^>
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 map <leader>e :edit %%
 map <leader>v :view %%
+
+" Automaticaly create a directory in the current file
+map <leader>md :!mkdir -p %%<cr>
 
 function! RenameFile()
   let old_name = expand('%')

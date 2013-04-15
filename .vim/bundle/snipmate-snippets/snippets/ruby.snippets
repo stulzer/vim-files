@@ -840,7 +840,7 @@ snippet vc
 snippet ve
 	validates_exclusion_of :${1:attribute}, :in => ${2:%w( mov avi )}
 snippet vf
-	validates_format_of :${1:attribute}, :with => /${2:regex}/
+	validates_format_of :${1:attribute}, :with => ${2:regex}
 snippet vi
 	validates_inclusion_of :${1:attribute}, :in => %w(${2: mov avi })
 snippet vl
@@ -849,6 +849,10 @@ snippet vn
 	validates_numericality_of :${1:attribute}
 snippet vpo
 	validates_presence_of :${1:attribute}
+snippet reurl
+	/^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?/ix
+snippet remail
+	/\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 snippet vu
 	validates_uniqueness_of :${1:attribute}
 snippet wants
