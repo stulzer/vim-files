@@ -1,9 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/Users/stulzer/.etc/bash'
-let g:netrw_dirhist_2='/Users/stulzer/Jobs/Code/silvan'
-let g:netrw_dirhist_3='/Users/stulzer/Jobs/Code/sohan'
-let g:netrw_dirhist_4='/Users/stulzer/.etc/bash'
-let g:netrw_dirhist_5='/Users/stulzer/.vim'
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/Users/stulzer/Jobs/Code/rafah/.webbynode/tasks'
+let g:netrw_dirhist_2='/Users/stulzer/.vim/bundle/syntastic/syntax_checkers/javascript'
+let g:netrw_dirhist_3='/Users/stulzer/.vim'
+let g:netrw_dirhist_4='/Users/stulzer/.vim/bundle/javascript/ftplugin'
+let g:netrw_dirhist_5='/Users/stulzer/Jobs/Code/meutaro/.git'
 let g:netrw_dirhist_6='/Users/stulzer/.etc/bash'
-let g:netrw_dirhist_7='/Users/stulzer/.rbenv'
