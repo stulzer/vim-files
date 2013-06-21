@@ -1,4 +1,4 @@
-execute pathogen#infect()
+call pathogen#infect()
 
 set nocompatible
 
@@ -25,6 +25,7 @@ set hidden
 " Enhanced command line commands
 set wildmenu
 set wildmode=list:longest
+set wildignore+=public/uploads
 
 " Ignore case when search
 set ignorecase
@@ -68,7 +69,6 @@ set expandtab
 set pastetoggle=<F12>
 
 colorscheme Tomorrow
-call togglebg#map("<F5>")
 
 " Mapping for quick js/less/scss folding
 nmap <leader>f vi{zf
@@ -225,7 +225,7 @@ map <leader>e :edit %%
 map <leader>v :view %%
 
 " Automaticaly create a directory in the current file
-map <leader>md :!mkdir -p %%<cr>
+map <leader>md :silent !mkdir -p %%<cr> :redraw! <cr>
 
 function! RenameFile()
   let old_name = expand('%')
@@ -237,6 +237,3 @@ function! RenameFile()
   endif
 endfunction
 map <leader>r :call RenameFile()<cr>
-
-" remapping s in visual mode, in order to make the surround vim work better
-vmap s S
