@@ -70,9 +70,6 @@ set pastetoggle=<F12>
 
 colorscheme Tomorrow
 
-" Mapping for quick js/less/scss folding
-nmap <leader>f vi{zf
-
 " Mapping for tab manipulation
 map <leader>tt :tabnew<cr>
 map <leader>te :tabedit
@@ -104,20 +101,16 @@ set spelllang=pt
 
 " Mapping to show or hide invisibles
 map <leader>d :set list!<cr>
-
 " Creates one line above and bellow the current cursor position
 nmap <Tab> O <Esc> j O <Esc>
-
-map <leader>cc :CommandTFlush<cr>\|:CommandT<cr>
-
-" Syntax Changing
-map <leader>jq :set syntax=jquery<cr>
-map <leader>js :set syntax=javascript<cr>
 " Execute the current file in nodejs
 map <leader>nd :!node %<cr>
-
+" Mapping for quick js/less/scss folding
+nmap <leader>f vi{zf
 " Execute rspec
 map <leader>s :!rspec --color<cr>
+" Execute test unit
+map <leader>u :!rake test %<cr>
 
 " Function to align key value fat arrows in ruby, and equals in js, stolen
 " from @tenderlove vimrc file.
@@ -166,14 +159,6 @@ if has('statusline')
   set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
 endif
 
-" " Automaticaly load my vimrc when saved.
-" if has("autocmd")
-"   autocmd bufwritepost .vimrc source $MYVIMRC
-" endif
-
-" " mapping to open my vimrc, to edit it on the fly
-" nmap <leader>v :tabedit $MYVIMRC<cr>
-
 " Nice way to corret typos saving, editing and deleting buffers
 if has("user_commands")
   command! -bang -nargs=* -complete=file E e<bang> <args>
@@ -215,14 +200,17 @@ map <leader>cs :CommandTFlush<cr>\|:CommandT spec<cr>
 map <leader>cl :CommandTFlush<cr>\|:CommandT lib<cr>
 map <leader>ca :CommandTFlush<cr>\|:CommandT app/assets<cr>
 map <leader>cg :topleft 100 :split Gemfile<cr>
+map <leader>cc :CommandTFlush<cr>\|:CommandT<cr>
 
-" Alternate between last opened file
+" Insert hash rocket with <c-l>
+imap <c-l> <space>=><space>
+" clears the highlight search with <cr> key in normal mode
+nnoremap <CR> :noh<cr>
+" Alternate between last opened buffer
 nnoremap <leader><leader> <c-^>
 
 " Map ,e and ,v to open files in the same directory as the current file
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
-map <leader>e :edit %%
-map <leader>v :view %%
 
 " Automaticaly create a directory in the current file
 map <leader>md :silent !mkdir -p %%<cr> :redraw! <cr>
@@ -237,3 +225,14 @@ function! RenameFile()
   endif
 endfunction
 map <leader>r :call RenameFile()<cr>
+
+augroup vimrcEx
+  " Clear all autocmd in the group
+  autocmd!
+
+  " open vim in the last position of the file that you were editing
+  autocmd BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal g`\"" |
+    \ endif
+augroup END
