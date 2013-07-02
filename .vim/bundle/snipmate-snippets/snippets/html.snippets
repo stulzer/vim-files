@@ -173,11 +173,11 @@ snippet article
 snippet article.
 	<article class="${1}">
 		${2}
-	</article>
+	</article><!-- end of ${3} -->
 snippet article#
 	<article id="${1}">
 		${2}
-	</article>
+	</article><!-- end of ${3} -->
 snippet aside
 	<aside>
 		${1}
@@ -185,11 +185,11 @@ snippet aside
 snippet aside.
 	<aside class="${1}">
 		${2}
-	</aside>
+	</aside><!-- end of ${3} -->
 snippet aside#
 	<aside id="${1}">
 		${2}
-	</aside>
+	</aside><!-- end of ${3} -->
 snippet audio
 	<audio>${1}</audio>
 snippet b
@@ -289,11 +289,11 @@ snippet div
 snippet div.
 	<div class="${1}">
 		${2}
-	</div>
+	</div><!-- end of ${3} -->
 snippet div#
 	<div id="${1}">
 		${2}
-	</div>
+	</div><!-- end of ${3} -->
 snippet dl
 	<dl>
 		${1}
@@ -301,11 +301,11 @@ snippet dl
 snippet dl.
 	<dl class="${1}">
 		${2}
-	</dl>
+	</dl><!-- end of ${3} -->
 snippet dl#
 	<dl id="${1}">
 		${2}
-	</dl>
+	</dl><!-- end of ${3} -->
 snippet dl+
 	<dl>
 		<dt>${1}</dt>
@@ -333,11 +333,11 @@ snippet fieldset
 snippet fieldset.
 	<fieldset class="${1}">
 		${2}
-	</fieldset>
+	</fieldset><!-- end of ${3} -->
 snippet fieldset#
 	<fieldset id="${1}">
 		${2}
-	</fieldset>
+	</fieldset><!-- end of ${3} -->
 snippet fieldset+
 	<fieldset>
 		<legend><span>${1}</span></legend>
@@ -355,11 +355,11 @@ snippet footer
 snippet footer.
 	<footer class="${1}">
 		${2}
-	</footer>
+	</footer><!-- end of ${3} -->
 snippet footer#
 	<footer id="${1}">
 		${2}
-	</footer>
+	</footer><!-- end of ${3} -->
 snippet form
 	<form action="${1}" method="${2:get}" accept-charset="utf-8">
 		${3}
@@ -422,11 +422,11 @@ snippet header
 snippet header.
 	<header class="${1}">
 		${2}
-	</header>
+	</header><!-- end of ${3} -->
 snippet header#
 	<header id="${1}">
 		${2}
-	</header>
+	</header><!-- end of ${3} -->
 snippet hgroup
 	<hgroup>
 		${1}
@@ -434,7 +434,7 @@ snippet hgroup
 snippet hgroup.
 	<hgroup class="${1}>
 		${2}
-	</hgroup>
+	</hgroup><!-- end of ${3} -->
 snippet hr
 	<hr />${1}
 snippet html
@@ -610,11 +610,11 @@ snippet nav
 snippet nav.
 	<nav class="${1}">
 		${2}
-	</nav>
+	</nav><!-- end of ${3} -->
 snippet nav#
 	<nav id="${1}">
 		${2}
-	</nav>
+	</nav><!-- end of ${3} -->
 snippet noscript
 	<noscript>
 		${1}
@@ -643,11 +643,11 @@ snippet ol
 snippet ol.
 	<ol class="${1}>
 		${2}
-	</ol>
+	</ol><!-- end of ${3} -->
 snippet ol#
 	<ol id="${1}>
 		${2}
-	</ol>
+	</ol><!-- end of ${3} -->
 snippet ol+
 	<ol>
 		<li>${1}</li>
@@ -706,19 +706,19 @@ snippet section
 snippet section.
 	<section class="${1}">
 		${2}
-	</section>
+	</section><!-- end of ${3} -->
 snippet section#
 	<section id="${1}">
 		${2}
-	</section>
+	</section><!-- end of ${3} -->
 snippet select
 	<select name="${1}" id="${2:$1}">
 		${3}
-	</select>
+	</select><!-- end of $1 -->
 snippet select.
 	<select name="${1}" id="${2:$1}" class="${3}>
 		${4}
-	</select>
+	</select><!-- end of $1 -->
 snippet select+
 	<select name="${1}" id="${2:$1}">
 		<option value="${3}">${4:$3}</option>
@@ -751,11 +751,11 @@ snippet table
 snippet table.
 	<table class="${1}" border="${2:0}">
 		${3}
-	</table>
+	</table><!-- end of $1 -->
 snippet table#
 	<table id="${1}" border="${2:0}">
 		${3}
-	</table>
+	</table><!-- end of $1 -->
 snippet tbody
 	<tbody>
 		${1}
@@ -814,7 +814,7 @@ snippet ul.
 snippet ul#
 	<ul id="${1}">
 		${2}
-	</ul>
+	</ul><!-- end of ${3} -->
 snippet ul+
 	<ul>
 		<li>${1}</li>
