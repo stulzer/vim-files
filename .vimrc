@@ -26,6 +26,8 @@ set hidden
 set wildmenu
 set wildmode=list:longest
 set wildignore+=public/uploads
+set wildignore+=public/spree
+set wildignore+=tmp
 
 " Ignore case when search
 set ignorecase
@@ -99,16 +101,21 @@ highlight SpecialKey guifg=#143c46
 set nospell
 set spelllang=pt
 
+
+" fast nohighligth
+map <leader>q :noh<cr>
 " Mapping to show or hide invisibles
 map <leader>d :set list!<cr>
+" Fast redraw!
+map <leader>D :redraw!<cr>
 " Creates one line above and bellow the current cursor position
 nmap <Tab> O <Esc> j O <Esc>
 " Execute the current file in nodejs
 map <leader>nd :!node %<cr>
 " Mapping for quick js/less/scss folding
 nmap <leader>f vi{zf
-" Execute rspec
-map <leader>s :!rspec --color<cr>
+" Execute rspec suite
+map <leader>R :! bundle exec rspec spec<cr>
 " Execute test unit
 map <leader>u :!rake test %<cr>
 
@@ -205,7 +212,7 @@ map <leader>cc :CommandTFlush<cr>\|:CommandT<cr>
 " Insert hash rocket with <c-l>
 imap <c-l> <space>=><space>
 " clears the highlight search with <cr> key in normal mode
-nnoremap <CR> :noh<cr>
+" nnoremap <CR> :noh<cr>
 " Alternate between last opened buffer
 nnoremap <leader><leader> <c-^>
 
