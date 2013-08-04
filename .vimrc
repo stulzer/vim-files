@@ -83,8 +83,18 @@ map <leader>tf :tabfirst<cr>
 map <leader>tl :tablast<cr>
 map <leader>tm :tabmove
 
+" Setup vim vroom to use binstubs by default
+let g:vroom_use_binstubs = 1
+" Execute rspec suite
+map <leader>R :! ./bin/bundle exec rspec spec<cr>
 " For the MakeGreen plugin and Ruby RSpec
 autocmd BufNewFile,BufRead *_spec.rb compiler rspec
+
+"for ruby, autoindent with two spaces, always expand tabs
+autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
+autocmd FileType python set sw=4 sts=4 et
+
+autocmd! BufRead,BufNewFile *.sass setfiletype sass 
 
 " Set line break
 set linebreak
@@ -97,9 +107,9 @@ set listchars=tab:▸\ ,eol:¬
 highlight NonText guifg=#143c46
 highlight SpecialKey guifg=#143c46
 
-" Don't use spell checker, if use Portuguese is the default language
-set nospell
+" spell checker, Portuguese as default language
 set spelllang=pt
+set spell
 
 
 " fast nohighligth
@@ -114,8 +124,6 @@ nmap <Tab> O <Esc> j O <Esc>
 map <leader>nd :!node %<cr>
 " Mapping for quick js/less/scss folding
 nmap <leader>f vi{zf
-" Execute rspec suite
-map <leader>R :! bundle exec rspec spec<cr>
 " Execute test unit
 map <leader>u :!rake test %<cr>
 
