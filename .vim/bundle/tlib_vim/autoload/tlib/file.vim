@@ -3,8 +3,8 @@
 " @Website:     http://www.vim.org/account/profile.php?user_id=4037
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
 " @Created:     2007-06-30.
-" @Last Change: 2012-03-23.
-" @Revision:    0.0.128
+" @Last Change: 2013-04-30.
+" @Revision:    0.0.139
 
 if &cp || exists("loaded_tlib_file_autoload")
     finish
@@ -42,10 +42,12 @@ endf
 "   => 'foo/bar/filename.txt'
 function! tlib#file#Join(filename_parts, ...) "{{{3
     TVarArg 'strip_slashes'
+    " TLogVAR a:filename_parts, strip_slashes
     if strip_slashes
         " let rx    = tlib#rx#Escape(g:tlib_filename_sep) .'$'
-        let rx    = '[/\\]$'
+        let rx    = '[/\\]\+$'
         let parts = map(copy(a:filename_parts), 'substitute(v:val, rx, "", "")')
+        " TLogVAR parts
         return join(parts, g:tlib_filename_sep)
     else
         return join(a:filename_parts, g:tlib_filename_sep)
@@ -95,6 +97,7 @@ function! tlib#file#Absolute(filename, ...) "{{{3
         let cwd = a:0 >= 1 ? a:1 : getcwd()
         let filename = tlib#file#Join([cwd, a:filename])
     endif
+    let filename = substitute(filename, '\(^\|[\/]\)\zs\.[\/]', '', 'g')
     let filename = substitute(filename, '[\/]\zs[^\/]\+[\/]\.\.[\/]', '', 'g')
     return filename
 endf
@@ -133,7 +136,7 @@ function! tlib#file#With(fcmd, bcmd, files, ...) "{{{3
             if filereadable(f)
                 if !empty(a:fcmd)
                     " TLogDBG a:fcmd .' '. tlib#arg#Ex(f)
-                    exec 'autocmd TLibFileRead BufRead' escape(f, ' ') 'let s:bufread=expand("<afile>:p")'
+                    exec 'autocmd TLibFileRead BufRead' escape(f, '\ ') 'let s:bufread=expand("<afile>:p")'
                     try 
                         exec a:fcmd .' '. tlib#arg#Ex(f)
                     finally

@@ -92,7 +92,7 @@ snippet fields
 snippet i18
 	I18n.t('${1:type.key}')${2}
 snippet it
-	<%= image_tag "${1}"${2} %>
+	<%= image_tag "${1}", :alt => "${2}" %>
 snippet jit
 	<%= javascript_include_tag ${1::all} %>
 snippet jsit
@@ -125,7 +125,7 @@ snippet if7
 	<!--[if IE 7]>     IE Conditional Comment: Internet Explorer 7 only   <![endif]-->
 snippet if8
 	<!--[if IE 8]>     IE Conditional Comment: Internet Explorer 8 only   <![endif]-->
-snippet <
-	<%= ${1} %>
-snippet <<
-	<% ${1} %>
+snippet image
+	<%= image_tag "${1}", :alt => "${2}" %>
+snippet else
+	<% else %>

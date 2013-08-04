@@ -19,7 +19,7 @@ augroup endwise " {{{1
   autocmd FileType ruby
         \ let b:endwise_addition = '\=submatch(0)=="{" ? "}" : "end"' |
         \ let b:endwise_words = 'module,class,def,if,unless,case,while,until,begin,do' |
-        \ let b:endwise_pattern = '^\s*\zs\%(module\|class\|def\|if\|unless\|case\|while\|until\|for\|\|begin\)\>\%(.*[^.:@$]\<end\>\)\@!\|\<do\ze\%(\s*|.*|\)\=\s*$' |
+        \ let b:endwise_pattern = '^\(.*=\)\?\s*\zs\%(module\|class\|def\|if\|unless\|case\|while\|until\|for\|\|begin\)\>\%(.*[^.:@$]\<end\>\)\@!\|\<do\ze\%(\s*|.*|\)\=\s*$' |
           \ let b:endwise_syngroups = 'rubyModule,rubyClass,rubyDefine,rubyControl,rubyConditional,rubyRepeat'
   autocmd FileType sh,zsh
         \ let b:endwise_addition = '\=submatch(0)=="if" ? "fi" : submatch(0)=="case" ? "esac" : "done"' |
@@ -63,10 +63,6 @@ if !exists('g:endwise_no_mappings')
   else
     imap <C-X><CR> <CR><Plug>AlwaysEnd
     imap <CR>      <CR><Plug>DiscretionaryEnd
-  endif
-
-  if maparg('<M-o>','i') == ''
-    inoremap <M-o> <C-O>o
   endif
 endif
 
