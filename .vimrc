@@ -2,7 +2,7 @@ call pathogen#infect()
 
 set nocompatible
 
-set background=light     " Assume a light background
+set background=light " Assume a light background
 
 syntax on
 
@@ -25,6 +25,8 @@ set hidden
 " Enhanced command line commands
 set wildmenu
 set wildmode=list:longest
+
+" Ignore certain folders
 set wildignore+=public/uploads
 set wildignore+=public/spree
 set wildignore+=tmp
@@ -83,10 +85,15 @@ map <leader>tf :tabfirst<cr>
 map <leader>tl :tablast<cr>
 map <leader>tm :tabmove
 
-" Setup vim vroom to use binstubs by default
-let g:vroom_use_binstubs = 1
-" Execute rspec suite
-map <leader>R :! ./bin/bundle exec rspec spec<cr>
+" Execute rspec suite using binstubs if rspec binstub exists.
+if filereadable("bin/rspec")
+  let g:vroom_use_binstubs = 1
+  map <leader>R :! ./bin/rspec<cr>
+else
+  let g:vroom_use_binstubs = 0
+  map <leader>R :! bundle exec rspec<cr>
+end
+
 " For the MakeGreen plugin and Ruby RSpec
 autocmd BufNewFile,BufRead *_spec.rb compiler rspec
 
