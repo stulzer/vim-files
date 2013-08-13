@@ -118,7 +118,6 @@ highlight SpecialKey guifg=#143c46
 set spelllang=pt
 set spell
 
-
 " fast nohighligth
 map <leader>q :noh<cr>
 " Mapping to show or hide invisibles
@@ -224,10 +223,6 @@ map <leader>ca :CommandTFlush<cr>\|:CommandT app/assets<cr>
 map <leader>cg :topleft 100 :split Gemfile<cr>
 map <leader>cc :CommandTFlush<cr>\|:CommandT<cr>
 
-" Insert hash rocket with <c-l>
-imap <c-l> <space>=><space>
-" clears the highlight search with <cr> key in normal mode
-" nnoremap <CR> :noh<cr>
 " Alternate between last opened buffer
 nnoremap <leader><leader> <c-^>
 
