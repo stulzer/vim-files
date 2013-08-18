@@ -2,8 +2,6 @@ call pathogen#infect()
 
 set nocompatible
 
-set background=light " Assume a light background
-
 syntax on
 
 " Auto detect filetype
@@ -73,6 +71,7 @@ set expandtab
 set pastetoggle=<F12>
 
 colorscheme Tomorrow
+set background=light "Assume a light background
 
 " Mapping for tab manipulation
 map <leader>tt :tabnew<cr>
@@ -124,8 +123,6 @@ map <leader>q :noh<cr>
 map <leader>d :set list!<cr>
 " Fast redraw!
 map <leader>D :redraw!<cr>
-" Creates one line above and bellow the current cursor position
-nmap <Tab> O <Esc> j O <Esc>
 " Execute the current file in nodejs
 map <leader>nd :!node %<cr>
 " Mapping for quick js/less/scss folding
@@ -253,3 +250,8 @@ augroup vimrcEx
     \   exe "normal g`\"" |
     \ endif
 augroup END
+
+set history=200
+" searching commands
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
