@@ -205,20 +205,16 @@ function! ShowRoutes()
 endfunction
 map <leader>cR :call ShowRoutes()<cr>
 
-" Command-T settings
-" Open in split by default
-let g:CommandTAcceptSelectionSplitMap=['<CR>', '<C-s>']
-
-" CommandT mapings
-map <leader>cv :CommandTFlush<cr>\|:CommandT app/views<cr>
-map <leader>ct :CommandTFlush<cr>\|:CommandT app/controllers<cr>
-map <leader>cm :CommandTFlush<cr>\|:CommandT app/models<cr>
-map <leader>ch :CommandTFlush<cr>\|:CommandT app/helpers<cr>
-map <leader>cs :CommandTFlush<cr>\|:CommandT spec<cr>
-map <leader>cl :CommandTFlush<cr>\|:CommandT lib<cr>
-map <leader>ca :CommandTFlush<cr>\|:CommandT app/assets<cr>
+" CtrlP mapings
+map <leader>cv :CtrlPClearCache<cr>\|:CtrlP app/views<cr>
+map <leader>ct :CtrlPClearCache<cr>\|:CtrlP app/controllers<cr>
+map <leader>cm :CtrlPClearCache<cr>\|:CtrlP app/models<cr>
+map <leader>ch :CtrlPClearCache<cr>\|:CtrlP app/helpers<cr>
+map <leader>cs :CtrlPClearCache<cr>\|:CtrlP spec<cr>
+map <leader>cl :CtrlPClearCache<cr>\|:CtrlP lib<cr>
+map <leader>ca :CtrlPClearCache<cr>\|:CtrlP app/assets<cr>
+map <leader>cc :CtrlPClearCache<cr>\|:CtrlP<cr>
 map <leader>cg :topleft 100 :split Gemfile<cr>
-map <leader>cc :CommandTFlush<cr>\|:CommandT<cr>
 
 " Alternate between last opened buffer
 nnoremap <leader><leader> <c-^>
@@ -255,3 +251,6 @@ set history=200
 " searching commands
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
+
+" ctrlp setup
+set runtimepath^=~/.vim/bundle/ctrlp.vim

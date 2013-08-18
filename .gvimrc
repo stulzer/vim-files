@@ -14,6 +14,9 @@ set lines=51
 highlight NonText guifg=#1a3c46
 highlight SpecialKey guifg=#1a3c46
 
+colorscheme heroku
+set background=dark
+
 if has("gui_macvim")
   set fuoptions=maxhorz,maxvert
 end
