@@ -13,6 +13,6 @@ if !exists("g:vroom_map_keys")
 endif
 
 if g:vroom_map_keys
-  silent! map <unique> <Leader>s :VroomRunTestFile<CR>
-  silent! map <unique> <Leader>S :VroomRunNearestTest<CR>
+  silent! map <unique> <Leader>S :VroomRunTestFile<CR>
+  silent! map <unique> <Leader>s :VroomRunNearestTest<CR>
 endif
