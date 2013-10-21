@@ -9,6 +9,7 @@ filetype plugin indent on
 
 runtime macros/matchit.vim
 
+" match unnamed with system clipboard
 set clipboard=unnamed
 
 " Display current mode
@@ -39,8 +40,6 @@ let mapleader = ","
 
 " Show line numbers
 set number
-" Add a highlight color in the current line
-set cursorline
 
 " Highlight match as you type
 set incsearch
@@ -54,12 +53,13 @@ set scrolloff=3
 " Set the terminal's title
 set title
 
-" No more anoying beeps
+" No more annoying beeps
 set visualbell
 
 " Don't make a backup before overwriting a file.
 set nobackup
 set nowritebackup
+
 " Keep swap files in one location
 set directory=$HOME/.vim/tmp//,.
 
@@ -80,14 +80,23 @@ map <leader>tn :tabnext<cr>
 map <leader>tp :tabprevious<cr>
 map <leader>tm :tabmove
 
-" Execute rspec suite using binstubs if rspec binstub exists.
+" Detecting rails binstubs for rspec
 if filereadable("bin/rspec")
   let g:vroom_use_binstubs = 1
-  map <leader>R :! ./bin/rspec<cr>
 else
   let g:vroom_use_binstubs = 0
-  map <leader>R :! bundle exec rspec<cr>
 end
+
+" Trigger to run the whole RSpec suite
+function ClearScreenAndRunRSpec()
+  :silent !clear
+  if filereadable("bin/rspec")
+    : !./bin/rspec
+  else
+    : !bundle exec rspec
+  end
+endfunction
+map <leader>R :call ClearScreenAndRunRSpec()<cr>
 
 " For the MakeGreen plugin and Ruby RSpec
 autocmd BufNewFile,BufRead *_spec.rb compiler rspec
@@ -109,22 +118,20 @@ set listchars=tab:▸\ ,eol:¬
 highlight NonText guifg=#143c46
 highlight SpecialKey guifg=#143c46
 
-" spell checker, Portuguese as default language
-set spelllang=pt
+" spell checker, Portuguese and English as default language
+set spelllang=pt,en_us
 set spell
 
 " fast nohighligth
 map <leader>q :noh<cr>
 " Mapping to show or hide invisibles
 map <leader>d :set list!<cr>
-" Fast redraw!
-map <leader>D :redraw!<cr>
 " Execute the current file in nodejs
 map <leader>nd :!node %<cr>
 " Mapping for quick js/less/scss folding
 nmap <leader>f vi{zf
 " Execute test unit
-map <leader>u :!rake test %<cr>
+map <leader>u :!bundle exec rake test %<cr>
 
 " Function to align key value fat arrows in ruby, and equals in js, stolen
 " from @tenderlove vimrc file.
@@ -194,7 +201,7 @@ function! ShowRoutes()
   :topleft 100 :split __Routes__
   :set buftype=nofile
   :normal 1GdG
-  :0r! rake -s routes
+  :0r! bundle exec rake -s routes
   :exec ":normal " . line("$") . "^W_ "
   :normal 1GG
   :normal dd
@@ -214,6 +221,11 @@ map <leader>cg :topleft 100 :split Gemfile<cr>
 
 " Alternate between last opened buffer
 nnoremap <leader><leader> <c-^>
+" End of line and First non-blank chracter of the line
+vnoremap H ^
+vnoremap L $
+nnoremap H ^
+nnoremap L $
 
 " Map ,e and ,v to open files in the same directory as the current file
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
@@ -250,3 +262,10 @@ cnoremap <C-n> <Down>
 
 " ctrlp setup
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  'public\/uploads\|public\/spree'
+  \ }
+
+" delimitMate configuration
+let delimitMate_matchpairs = "(:),[:],{:}"
+let delimitMate_quotes = ""
