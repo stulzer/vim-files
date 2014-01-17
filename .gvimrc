@@ -17,6 +17,8 @@ highlight SpecialKey guifg=#1a3c46
 colorscheme heroku
 set background=dark
 
+set fu
+
 if has("gui_macvim")
   set fuoptions=maxhorz,maxvert
 end
