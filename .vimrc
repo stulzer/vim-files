@@ -71,7 +71,7 @@ set expandtab
 set pastetoggle=<F12>
 
 colorscheme Tomorrow
-set background=light "Assume a light background
+set background=light
 
 " Mapping for tab manipulation
 map <leader>tt :tabnew<cr>
@@ -269,3 +269,7 @@ let g:ctrlp_custom_ignore = {
 " delimitMate configuration
 let delimitMate_matchpairs = "(:),[:],{:}"
 let delimitMate_quotes = ""
+
+" Cucumber
+nnoremap <leader>A :!clear; bundle exec cucumber features/support/ features/<cr>
+nnoremap <leader>a :!clear; bundle exec cucumber features/support/ %<cr>
