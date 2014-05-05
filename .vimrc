@@ -70,8 +70,10 @@ set shiftwidth=2
 set expandtab
 set pastetoggle=<F12>
 
-colorscheme Tomorrow
-set background=light
+" colorscheme Tomorrow
+" set background=light
+colorscheme heroku-terminal
+set background=dark
 
 " Mapping for tab manipulation
 map <leader>tt :tabnew<cr>
@@ -131,7 +133,8 @@ map <leader>nd :!node %<cr>
 " Mapping for quick js/less/scss folding
 nmap <leader>f vi{zf
 " Execute test unit
-map <leader>u :!bundle exec rake test %<cr>
+map <leader>u :!bundle exec rake test TEST=%<cr>
+map <leader>U :!bundle exec rake<cr>
 
 " Function to align key value fat arrows in ruby, and equals in js, stolen
 " from @tenderlove vimrc file.
@@ -216,6 +219,7 @@ map <leader>ch :CtrlPClearCache<cr>\|:CtrlP app/helpers<cr>
 map <leader>cs :CtrlPClearCache<cr>\|:CtrlP spec<cr>
 map <leader>cl :CtrlPClearCache<cr>\|:CtrlP lib<cr>
 map <leader>ca :CtrlPClearCache<cr>\|:CtrlP app/assets<cr>
+map <leader>ci :CtrlPClearCache<cr>\|:CtrlP app/assets/images<cr>
 map <leader>cc :CtrlPClearCache<cr>\|:CtrlP<cr>
 map <leader>cg :topleft 100 :split Gemfile<cr>
 
@@ -260,11 +264,13 @@ set history=200
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 
-" ctrlp setup
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  'public\/uploads\|public\/spree'
-  \ }
+nnoremap <C-n> :NERDTree <cr>
+
+" " ctrlp setup
+" set runtimepath^=~/.vim/bundle/ctrlp.vim
+" let g:ctrlp_custom_ignore = {
+"   \ 'dir':  'public\/uploads\|public\/spree'
+"   \ }
 
 " delimitMate configuration
 let delimitMate_matchpairs = "(:),[:],{:}"
@@ -273,3 +279,44 @@ let delimitMate_quotes = ""
 " Cucumber
 nnoremap <leader>A :!clear; bundle exec cucumber features/support/ features/<cr>
 nnoremap <leader>a :!clear; bundle exec cucumber features/support/ %<cr>
+
+
+
+
+
+" Run a given vim command on the results of fuzzy selecting from a given shell
+" command. See usage below.
+function! SelectaCommand(choice_command, selecta_args, vim_command)
+  try
+    silent let selection = system(a:choice_command . " | selecta " . a:selecta_args)
+  catch /Vim:Interrupt/
+    " Swallow the ^C so that the redraw below happens; otherwise there will be
+    " leftovers from selecta on the screen
+    redraw!
+    return
+  endtry
+  redraw!
+  exec a:vim_command . " " . selection
+endfunction
+
+" Find all files in all non-dot directories starting in the working directory.
+" Fuzzy select one of those. Open the selected file with :e.
+" nnoremap <leader>cv :call SelectaCommand("find app/views -type f", "", ":e")<cr> 
+" nnoremap <leader>ct :call SelectaCommand("find app/controllers -type f", "", ":e")<cr> 
+" nnoremap <leader>cm :call SelectaCommand("find app/models -type f", "", ":e")<cr>
+" nnoremap <leader>ch :call SelectaCommand("find app/helpers -type f", "", ":e")<cr>
+" nnoremap <leader>cs :call SelectaCommand("find spec -type f", "", ":e")<cr>
+" nnoremap <leader>cl :call SelectaCommand("find lib -type f", "", ":e")<cr>
+" nnoremap <leader>ca :call SelectaCommand("find app/assets -type f", "", ":e")<cr>
+" nnoremap <leader>cc :call SelectaCommand("find * -type f", "", ":e")<cr> 
+" nnoremap <leader>cg :topleft 100 :split Gemfile<cr>
+
+
+" Show syntax highlighting groups for word under cursor
+nmap <C-S-P> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc

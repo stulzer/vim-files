@@ -1,5 +1,12 @@
-let s:foreground = "8584ae"
+" Heroku Colorscheme 
+"
+" - iTerm2 only
+" - Depends on heroku colorscheme for iTerm2
+" - It's for terminal vim only;
+" - Hex color conversion functions borrowed from the theme 'Desert256'"
+
 let s:background = "1b1b24"
+let s:foreground = "8584ae"
 let s:selection = "ffffff"
 let s:line = "262633"
 let s:comment = "62548b"
@@ -14,11 +21,13 @@ let s:window = "17171d"
 
 set background=dark
 hi clear
+hi clear SpellBad
+hi SpellBad cterm=underline
 syntax reset
 
-let g:colors_name = "heroku"
+let g:colors_name = "heroku-terminal"
 
-if has("gui_running")
+if &t_Co == 88 || &t_Co == 256
   " Returns an approximate grey index for the given grey level
   fun <SID>grey_number(x)
     if &t_Co == 88
@@ -227,11 +236,10 @@ if has("gui_running")
   endfun
 
   " Vim Highlighting
-  call <SID>X("Normal", s:foreground, s:background, "")
   highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
   call <SID>X("NonText", s:comment, "", "")
   call <SID>X("SpecialKey", s:selection, "", "")
-  call <SID>X("Search", s:foreground, s:yellow, "")
+  call <SID>X("Search", s:yellow, s:background, "")
   call <SID>X("TabLine", s:foreground, s:background, "reverse")
   call <SID>X("StatusLine", s:window, s:yellow, "reverse")
   call <SID>X("StatusLineNC", s:window, s:foreground, "reverse")
@@ -242,7 +250,7 @@ if has("gui_running")
   call <SID>X("MoreMsg", s:green, "", "")
   call <SID>X("Question", s:green, "", "")
   call <SID>X("WarningMsg", s:red, "", "")
-  call <SID>X("MatchParen", "", s:selection, "")
+  call <SID>X("MatchParen", s:selection, s:foreground, "")
   call <SID>X("Folded", s:comment, s:background, "")
   call <SID>X("FoldColumn", "", s:background, "")
   if version >= 700
@@ -257,7 +265,7 @@ if has("gui_running")
 
   " Standard Highlighting
   call <SID>X("Comment", s:comment, "", "")
-  call <SID>X("Todo", s:comment, s:background, "")
+  call <SID>X("Todo", s:comment, s:foreground, "")
   call <SID>X("Title", s:comment, "", "")
   call <SID>X("Identifier", s:red, "", "none")
   call <SID>X("Statement", s:foreground, "", "")

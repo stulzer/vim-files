@@ -17,7 +17,7 @@
 " Set default options {{{
 	for [s:key, s:value] in items({
 		\   'theme'            : 'default'
-		\ , 'colorscheme'      : 'default'
+		\ , 'colorscheme'      : 'solarized256'
 		\ , 'symbols'          : 'compatible'
 		\ , 'symbols_override' : {}
 		\ , 'dividers_override': []
