@@ -299,21 +299,8 @@ function! SelectaCommand(choice_command, selecta_args, vim_command)
   exec a:vim_command . " " . selection
 endfunction
 
-" Find all files in all non-dot directories starting in the working directory.
-" Fuzzy select one of those. Open the selected file with :e.
-" nnoremap <leader>cv :call SelectaCommand("find app/views -type f", "", ":e")<cr> 
-" nnoremap <leader>ct :call SelectaCommand("find app/controllers -type f", "", ":e")<cr> 
-" nnoremap <leader>cm :call SelectaCommand("find app/models -type f", "", ":e")<cr>
-" nnoremap <leader>ch :call SelectaCommand("find app/helpers -type f", "", ":e")<cr>
-" nnoremap <leader>cs :call SelectaCommand("find spec -type f", "", ":e")<cr>
-" nnoremap <leader>cl :call SelectaCommand("find lib -type f", "", ":e")<cr>
-" nnoremap <leader>ca :call SelectaCommand("find app/assets -type f", "", ":e")<cr>
-" nnoremap <leader>cc :call SelectaCommand("find * -type f", "", ":e")<cr> 
-" nnoremap <leader>cg :topleft 100 :split Gemfile<cr>
-
-
 " Show syntax highlighting groups for word under cursor
-nmap <C-S-P> :call <SID>SynStack()<CR>
+nmap <C-S-X> :call <SID>SynStack()<CR>
 function! <SID>SynStack()
   if !exists("*synstack")
     return
