@@ -1,4 +1,4 @@
-set guifont=Inconsolata:h18
+set guifont=Inconsolata\ for\ Powerline:h20
 set antialias
 set encoding=utf-8
 set guioptions-=T
@@ -17,7 +17,7 @@ highlight SpecialKey guifg=#1a3c46
 colorscheme heroku
 set background=dark
 
-set fu
+set nofu
 
 if has("gui_macvim")
   set fuoptions=maxhorz,maxvert
