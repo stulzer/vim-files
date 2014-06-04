@@ -173,14 +173,6 @@ endif
 
 if has('statusline')
   set laststatus=2
-
-  " Broken down into easily includeable segments
-  set statusline=%<%f\                     " Filename
-  set statusline+=%w%h%m%r                 " Options
-  set statusline+=%{fugitive#statusline()} " Git Hotness
-  set statusline+=\ [%{&ff}/%Y]            " filetype
-  set statusline+=\ [%{getcwd()}]          " current dir
-  set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
 endif
 
 " Nice way to corret typos saving, editing and deleting buffers
@@ -259,7 +251,7 @@ augroup vimrcEx
     \ endif
 augroup END
 
-set history=200
+set history=500
 " searching commands
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
@@ -280,9 +272,9 @@ let delimitMate_quotes = ""
 nnoremap <leader>A :!clear; bundle exec cucumber features/support/ features/<cr>
 nnoremap <leader>a :!clear; bundle exec cucumber features/support/ %<cr>
 
-
-
-
+" Easy way to add and subtract numbers
+nnoremap + <C-a>
+nnoremap _ <C-X>
 
 " Run a given vim command on the results of fuzzy selecting from a given shell
 " command. See usage below.
