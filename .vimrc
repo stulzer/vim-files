@@ -276,6 +276,10 @@ nnoremap <leader>a :!clear; bundle exec cucumber features/support/ %<cr>
 nnoremap + <C-a>
 nnoremap _ <C-X>
 
+" Remapping the reversal find
+nnoremap <C-f> ,
+vnoremap <C-f> ,
+
 " Run a given vim command on the results of fuzzy selecting from a given shell
 " command. See usage below.
 function! SelectaCommand(choice_command, selecta_args, vim_command)
