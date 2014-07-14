@@ -335,6 +335,20 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     call <SID>X("javascriptGlobal", s:blue, "", "")
     call <SID>X("javascriptStatement", s:red, "", "")
 
+  " CoffeeScript Highlighting
+  call <SID>X("coffeeKeyword", s:orange, "", "")
+  call <SID>X("coffeeRepeat", s:orange, "", "")
+  call <SID>X("coffeeConditional", s:orange, "", "")
+
+  call <SID>X("coffeeParen", s:aqua, "", "")
+  call <SID>X("coffeeParens", s:blue, "", "")
+  call <SID>X("coffeeBracket", s:aqua, "", "")
+  call <SID>X("coffeeBrackets", s:blue, "", "")
+
+  call <SID>X("coffeeDotAccess", s:aqua, "", "")
+  call <SID>X("coffeeStatement", s:red, "", "")
+
+
 	" HTML Highlighting
 	call <SID>X("htmlTag", s:red, "", "")
 	call <SID>X("htmlTagName", s:red, "", "")
