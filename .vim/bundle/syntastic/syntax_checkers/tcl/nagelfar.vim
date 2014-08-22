@@ -11,10 +11,33 @@
 "             See nagelfar homepage http://nagelfar.berlios.de/.
 "
 "============================================================================
-function! SyntaxCheckers_tcl_GetLocList()
-    let makeprg = "nagelfar -H " . g:syntastic_tcl_nagelfar_conf . " " . shellescape(expand('%'))
 
-    let errorformat='%I%f: %l: N %m, %f: %l: %t %m, %-GChecking file %f'
+if exists("g:loaded_syntastic_tcl_nagelfar_checker")
+    finish
+endif
+let g:loaded_syntastic_tcl_nagelfar_checker = 1
 
-    return SyntasticMake({ 'makeprg': makeprg, 'errorformat': errorformat })
+let s:save_cpo = &cpo
+set cpo&vim
+
+function! SyntaxCheckers_tcl_nagelfar_GetLocList() dict
+    let makeprg = self.makeprgBuild({ 'args_after': '-H' })
+
+    let errorformat =
+        \ '%I%f: %l: N %m,'.
+        \ '%f: %l: %t %m,'.
+        \ '%-GChecking file %f'
+
+    return SyntasticMake({
+        \ 'makeprg': makeprg,
+        \ 'errorformat': errorformat })
 endfunction
+
+call g:SyntasticRegistry.CreateAndRegisterChecker({
+    \ 'filetype': 'tcl',
+    \ 'name': 'nagelfar'})
+
+let &cpo = s:save_cpo
+unlet s:save_cpo
+
+" vim: set et sts=4 sw=4:
