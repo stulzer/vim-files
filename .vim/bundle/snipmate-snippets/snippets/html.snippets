@@ -730,6 +730,8 @@ snippet source
 	<source src="${1}" type="${2}" media="${3}" />
 snippet span
 	<span>${1}</span>
+snippet span.
+	<span class="${1}">${2}</span>
 snippet strong
 	<strong>${1}</strong>
 snippet style
@@ -745,16 +747,16 @@ snippet summary
 snippet sup
 	<sup>${1}</sup>
 snippet table
-	<table border="${1:0}">
-		${2}
+	<table>
+		${1}
 	</table>
 snippet table.
-	<table class="${1}" border="${2:0}">
-		${3}
+	<table class="${1}">
+		${2}
 	</table><!-- end of $1 -->
 snippet table#
-	<table id="${1}" border="${2:0}">
-		${3}
+	<table id="${1}">
+		${2}
 	</table><!-- end of $1 -->
 snippet tbody
 	<tbody>
