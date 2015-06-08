@@ -91,6 +91,15 @@ map <leader>tn :tabnext<cr>
 map <leader>tp :tabprevious<cr>
 map <leader>tm :tabmove
 
+nnoremap <Leader>w :w<cr>
+
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
+
 " Detecting rails binstubs for rspec
 if filereadable("bin/rspec")
   let g:vroom_use_binstubs = 1
@@ -116,14 +125,14 @@ autocmd BufNewFile,BufRead *_spec.rb compiler rspec
 autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
 autocmd FileType python set sw=4 sts=4 et
 
-autocmd! BufRead,BufNewFile *.sass setfiletype sass 
+autocmd! BufRead,BufNewFile *.sass setfiletype sass
 
 " Set line break
 set linebreak
 " Don't show invisibles
 set nolist
 " Invisibles for tab and end of line
-set listchars=tab:▸\ ,eol:¬
+set listchars=tab:▸\ ,eol:¬,trail:·
 
 " Blank chars colors
 highlight NonText guifg=#143c46
@@ -136,19 +145,19 @@ set spell
 " fast nohighligth
 map <leader>q :noh<cr>
 " Mapping to show or hide invisibles
-map <leader>d :set list!<cr>
+map <leader>l :set list!<cr>
 " Execute the current file in nodejs
 map <leader>nd :!node %<cr>
 " Mapping for quick js/less/scss folding
 nmap <leader>f vi{zf
 " Execute test unit
-map <leader>u :!bundle exec rake test TEST=%<cr>
-map <leader>U :!bundle exec rake<cr>
+map <leader>u :!clear && bundle exec rake test TEST=%<cr>
+map <leader>U :!clear && bundle exec rake<cr>
 
 " Function to align key value fat arrows in ruby, and equals in js, stolen
 " from @tenderlove vimrc file.
 command! -nargs=? -range Align <line1>,<line2>call AlignSection('<args>')
-vnoremap <silent> <Leader>a :Align<cr>
+vnoremap <silent> <leader>a :Align<cr>
 function! AlignSection(regex) range
   let extra = 1
   let sep = empty(a:regex) ? '=' : a:regex
@@ -213,6 +222,13 @@ endfunction
 map <leader>cR :call ShowRoutes()<cr>
 
 " CtrlP mapings
+map <leader>os :CtrlPClearCache<cr>\|:CtrlP public/scss<cr>
+map <leader>oi :CtrlPClearCache<cr>\|:CtrlP public/images<cr>
+map <leader>oh :CtrlPClearCache<cr>\|:CtrlP public/handlebars<cr>
+map <leader>om :CtrlPClearCache<cr>\|:CtrlP public/modules<cr>
+map <leader>og :topleft 100 :split Gruntfile.js<cr>
+map <leader>va :CtrlPClearCache<cr>\|:CtrlP src/main/webapp-resources/assets<cr>
+map <leader>vm :CtrlPClearCache<cr>\|:CtrlP src/main/webapp/mustache<cr>
 map <leader>cv :CtrlPClearCache<cr>\|:CtrlP app/views<cr>
 map <leader>ct :CtrlPClearCache<cr>\|:CtrlP app/controllers<cr>
 map <leader>cm :CtrlPClearCache<cr>\|:CtrlP app/models<cr>
@@ -222,10 +238,25 @@ map <leader>cl :CtrlPClearCache<cr>\|:CtrlP lib<cr>
 map <leader>ca :CtrlPClearCache<cr>\|:CtrlP app/assets<cr>
 map <leader>ci :CtrlPClearCache<cr>\|:CtrlP app/assets/images<cr>
 map <leader>cc :CtrlPClearCache<cr>\|:CtrlP<cr>
+map <leader>cr :topleft 100 :split config/routes.rb<cr>
 map <leader>cg :topleft 100 :split Gemfile<cr>
 
 " Alternate between last opened buffer
 nnoremap <leader><leader> <c-^>
+
+" Makes ctrlp FASTER THAN HELL
+let g:ctrlp_use_caching = 0
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+else
+  let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+  let g:ctrlp_prompt_mappings = {
+        \ 'AcceptSelection("e")': ['<space>', '<cr>', '<2-LeftMouse>'],
+        \ }
+endif
+
 " End of line and First non-blank chracter of the line
 vnoremap H ^
 vnoremap L $
@@ -260,29 +291,23 @@ augroup vimrcEx
     \ endif
 augroup END
 
-set history=500
 " searching commands
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 
 nnoremap <C-n> :NERDTree <cr>
 
-" " ctrlp setup
-" set runtimepath^=~/.vim/bundle/ctrlp.vim
-" let g:ctrlp_custom_ignore = {
-"   \ 'dir':  'public\/uploads\|public\/spree'
-"   \ }
-
 " delimitMate configuration
 let delimitMate_matchpairs = "(:),[:],{:}"
 let delimitMate_quotes = ""
 
 " Cucumber
-nnoremap <leader>A :!clear; bundle exec cucumber features/support/ features/<cr>
-nnoremap <leader>a :!clear; bundle exec cucumber features/support/ %<cr>
+nnoremap <leader>A :!clear; ruby %<cr>
+nnoremap <leader>a :!clear; ruby %<cr>
 
 " Easy way to add and subtract numbers
 nnoremap + <C-a>
+nnoremap - <C-X>
 nnoremap _ <C-X>
 
 " Remapping the reversal find
@@ -313,6 +338,43 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
+set viminfo='50,<10000,s1000,:1
+" '50 Marks will be remembered for the last 50 files you edited.
+" <10000 Contents of registers (up to 10000 lines each) will be
+" remembered.
+" s1000 Registers with more than 1 Mb text are skipped.
+" :1 Actives command-line history
+
+set history=2000
+" Stores up to 2000 commands types on command-line mode
+
+" Highlight Whitespaces to not forget them
+" highlight ExtraWhitespace ctermbg=red guibg=red
+" match ExtraWhitespace /\s\+$/
+" autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+" autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+" autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+" autocmd BufWinLeave * call clearmatches()
+
+" Show whitespaces as dots and End of Line as ¬
+" Removes trailing spaces
+function! TrimWhiteSpace()
+    %s/\s\+$//e
+endfunction
+
+" nnoremap <silent> <leader>fw :call TrimWhiteSpace()<CR>
+
+" autocmd FileWritePre    * :call TrimWhiteSpace()
+" autocmd FileAppendPre   * :call TrimWhiteSpace()
+" autocmd FilterWritePre  * :call TrimWhiteSpace()
+" autocmd BufWritePre     * :call TrimWhiteSpace()
+
+nnoremap <silent> <leader>g :! cd ~/Code/vivareal-site/src/main/webapp-resources/grunt && grunt<CR>
+
+let g:syntastic_html_tidy_quiet_messages = { "level" : "warnings" }
+
+" powerline stuff
+python import sys; sys.path.append("/Users/stulzer/Library/Python/2.7/bin/")
 python from powerline.vim import setup as powerline_setup
 python powerline_setup()
 python del powerline_setup
