@@ -24,8 +24,20 @@ set wildmode=list:longest
 
 " Ignore certain folders
 set wildignore+=public/uploads
+set wildignore+=.sass-cache
+set wildignore+=node_modules
+set wildignore+=temp
 set wildignore+=public/spree
 set wildignore+=tmp
+set wildignore+=bower
+set wildignore+=bower_components
+set wildignore+=dist
+set wildignore+=src/main/webapp/static
+set wildignore+=src/main/webapp/v/static
+set wildignore+=build
+set wildignore+=.keep
+set wildignore+=.rspec
+set wildignore+=spec/cassettes
 
 " Ignore case when search
 set ignorecase
