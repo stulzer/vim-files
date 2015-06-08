@@ -9,9 +9,6 @@ filetype plugin indent on
 
 runtime macros/matchit.vim
 
-" match unnamed with system clipboard
-set clipboard=unnamed
-
 " Display current mode
 set showmode
 
