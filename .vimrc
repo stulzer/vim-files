@@ -45,7 +45,8 @@ set ignorecase
 set smartcase
 
 " Remaping the <Leader> key.
-let mapleader = ","
+" let mapleader = ","
+let mapleader = " "
 
 " Show line numbers
 set number
@@ -91,7 +92,8 @@ map <leader>tn :tabnext<cr>
 map <leader>tp :tabprevious<cr>
 map <leader>tm :tabmove
 
-nnoremap <Leader>w :w<cr>
+nnoremap <leader>w :w<cr>
+nnoremap <leader>a :wa<cr>
 
 vmap <Leader>y "+y
 vmap <Leader>d "+d
@@ -122,7 +124,7 @@ map <leader>R :call ClearScreenAndRunRSpec()<cr>
 autocmd BufNewFile,BufRead *_spec.rb compiler rspec
 
 "for ruby, autoindent with two spaces, always expand tabs
-autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
+autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber,ftl set ai sw=2 sts=2 et
 autocmd FileType python set sw=4 sts=4 et
 
 autocmd! BufRead,BufNewFile *.sass setfiletype sass
@@ -229,6 +231,7 @@ map <leader>om :CtrlPClearCache<cr>\|:CtrlP public/modules<cr>
 map <leader>og :topleft 100 :split Gruntfile.js<cr>
 map <leader>va :CtrlPClearCache<cr>\|:CtrlP src/main/webapp-resources/assets<cr>
 map <leader>vm :CtrlPClearCache<cr>\|:CtrlP src/main/webapp/mustache<cr>
+map <leader>vh :CtrlPClearCache<cr>\|:CtrlP src/main/webapp/assets/handlebars<cr>
 map <leader>cv :CtrlPClearCache<cr>\|:CtrlP app/views<cr>
 map <leader>ct :CtrlPClearCache<cr>\|:CtrlP app/controllers<cr>
 map <leader>cm :CtrlPClearCache<cr>\|:CtrlP app/models<cr>
@@ -300,10 +303,6 @@ nnoremap <C-n> :NERDTree <cr>
 " delimitMate configuration
 let delimitMate_matchpairs = "(:),[:],{:}"
 let delimitMate_quotes = ""
-
-" Cucumber
-nnoremap <leader>A :!clear; ruby %<cr>
-nnoremap <leader>a :!clear; ruby %<cr>
 
 " Easy way to add and subtract numbers
 nnoremap + <C-a>
@@ -378,3 +377,5 @@ python import sys; sys.path.append("/Users/stulzer/Library/Python/2.7/bin/")
 python from powerline.vim import setup as powerline_setup
 python powerline_setup()
 python del powerline_setup
+
+au BufRead,BufNewFile *.ftl setfiletype html
